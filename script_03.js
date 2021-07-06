@@ -6207,3 +6207,111 @@ const averageTurnover = (arr) => {
     return parseInt(revenue/newArr.length);
 };
 console.log(averageTurnover(users));
+
+
+const userMoneyPercent = (arr) => {
+    let revenueNumber = 0;
+    const newArr = arr.filter( x => {
+        if (x.revenue > 0) {
+            revenueNumber += 1;
+        };
+    });
+    return `${parseFloat((revenueNumber/arr.length)*100).toFixed(2)} %`;     
+};
+console.log(userMoneyPercent(users));
+
+
+const revenueOfMoneyUser = (arr) => {
+    let revenue = 0;
+    let revenueNumber = 0;
+    const newArr = arr.filter(x => {
+        if (x.revenue > 0) {
+            revenue += x.revenue;
+            revenueNumber += 1;
+        }
+    });
+    return parseInt(revenue/revenueNumber);
+};
+console.log(revenueOfMoneyUser(users));
+
+
+const totalMoneyGain = (arr) => {
+    let revenue = 0;
+    const newArr = arr.filter(x => revenue += x.revenue);
+    return revenue;
+};
+console.log(totalMoneyGain(users));
+
+
+const numberUsersFrance = (arr) => {
+    let revenueNumber = 0;
+    const newArr = arr.filter(x => {
+        if (x.country === "France") {
+            revenueNumber += 1;
+        }
+    });
+    return revenueNumber;
+};
+console.log(numberUsersFrance(users));
+
+const turnover4Countries = (arr) => {
+    let revenue = 0;
+    const newArr = arr.filter(x => {
+        if (x.country === "France" || x.country === "Germany" || x.country === "United States" || x.country === "Great Britain") {
+            revenue += x.revenue;
+        }
+    });
+    return revenue;
+};
+console.log(turnover4Countries(users));
+
+const listCountriesEarnedMoney = (arr) => {
+    let countryList = [];
+    const newArr = arr.filter(x => {
+        if (x.revenue > 0 && !countryList.includes(x.country)) {
+            countryList.push(x.country);
+        }
+    });
+    return countryList;
+};
+console.log(listCountriesEarnedMoney (users));
+
+const usersWhoMadeMostMoney = (arr) => {
+    let revenue = 0;
+    const newArr = arr.sort((a, b) => {
+        return Number(b.revenue - a.revenue);
+    }).slice(0, 5).map(x => `${x.firstName} ${x.lastName}`);
+    return newArr;
+};
+console.log(usersWhoMadeMostMoney(users));
+
+const largestGains = (arr, gender) => {
+    let revenue = 0;
+    const newArr = arr.filter(x => {
+        if (x.sex === gender) {
+            revenue += x.revenue;
+        }
+    });
+    return revenue;
+};
+console.log(largestGains(users));
+
+const users75Euros = (arr) => {
+    let revenue = 0;
+    const newArr = arr.filter((x) => x.revenue >= 75).map(x => `${x.firstName} ${x.lastName}`);
+    return newArr;
+};
+console.log(users75Euros(users));
+
+const percentageOfPaying = (arr) => {
+    let revenueNumber = 0;
+    const limit = 100;
+    const newArr = arr.filter(x => {
+        if (x.revenue > 0 && Number(x.id) <= limit) {
+            revenueNumber += 1;
+        }
+    });
+    return `${parseFloat((revenueNumber/limit)*100).toFixed(2)} %`;
+};
+
+console.log(percentageOfPaying(users));
